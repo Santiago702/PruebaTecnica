@@ -1,6 +1,9 @@
 
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.EntityFrameworkCore;
 using PruebaTecnica.Data;
+using PruebaTecnica.Services;
+using PruebaTecnica.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +15,8 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))
 );
+
+builder.Services.AddScoped<I_Autenticacion, S_Autenticacion>();
 builder.Services.AddControllersWithViews();
 
 var app = builder.Build();

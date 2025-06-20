@@ -1,4 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using PruebaTecnica.Data;
 using PruebaTecnica.Models;
 using System.Diagnostics;
 
@@ -6,27 +9,17 @@ namespace PruebaTecnica.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly ApplicationDbContext _contexto;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ApplicationDbContext contexto)
         {
-            _logger = logger;
+            _contexto = contexto;
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Privacy()
+        public IActionResult Inicio()
         {
             return View();
         }
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }
